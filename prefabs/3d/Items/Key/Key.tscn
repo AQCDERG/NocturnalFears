@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc4l3xs76jot"]
+
+[ext_resource type="Script" path="res://prefabs/3d/Items/Key/Key.cs" id="1_1b40o"]
+[ext_resource type="PackedScene" uid="uid://dsfmr828l6qhi" path="res://assets/Models/Tools/Key.blend" id="1_wsded"]
+[ext_resource type="Script" path="res://components/3d/ClickDetectionComponenet.cs" id="4_5oi7l"]
+[ext_resource type="Texture2D" uid="uid://bn7vvjd4oey06" path="res://assets/Images/ItemPng/Key.png" id="7_pfb6p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_778cr"]
+size = Vector3(0.961288, 0.934105, 0.867149)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_27dju"]
+radius = 0.270539
+height = 0.541079
+
+[node name="Key" type="RigidBody3D"]
+script = ExtResource("1_1b40o")
+
+[node name="KeyModel" parent="." instance=ExtResource("1_wsded")]
+
+[node name="Image" type="TextureRect" parent="."]
+offset_right = 89.0
+offset_bottom = 89.0
+texture = ExtResource("7_pfb6p")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ClickDetectionComponenet" type="Area3D" parent="."]
+script = ExtResource("4_5oi7l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickDetectionComponenet"]
+shape = SubResource("BoxShape3D_778cr")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_27dju")
+
+[editable path="KeyModel"]

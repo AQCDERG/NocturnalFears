@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://dup3shotyss4f"]
+
+[ext_resource type="Script" path="res://components/ui/InventoryComponenet.cs" id="1_woc3k"]
+[ext_resource type="Texture2D" uid="uid://cc82p3o56g65e" path="res://assets/Images/Slot.png" id="3_3noci"]
+[ext_resource type="Texture2D" uid="uid://bhe8wwc8rhc23" path="res://assets/Images/Background (1).png" id="4_fvai0"]
+[ext_resource type="Script" path="res://prefabs/3d/Items/Slot.cs" id="4_lyanc"]
+
+[sub_resource type="Gradient" id="Gradient_bdxr6"]
+colors = PackedColorArray(0, 0, 0, 1, 0.344176, 0.000170263, 0.383008, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eqgov"]
+gradient = SubResource("Gradient_bdxr6")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g54f1"]
+diffuse_texture = SubResource("GradientTexture2D_eqgov")
+
+[node name="Inventory" type="Node3D"]
+script = ExtResource("1_woc3k")
+
+[node name="Visiual" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Visiual"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -325.0
+offset_top = -366.0
+offset_right = 325.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VisualInventory" type="TextureRect" parent="Visiual"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 251.0
+offset_top = 565.0
+offset_right = 901.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("CanvasTexture_g54f1")
+
+[node name="Slots" type="Control" parent="Visiual"]
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 647.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Visiual/Slots"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -324.5
+offset_top = -87.0
+offset_right = 2941.5
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+
+[node name="Slot" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="Slot2" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="Slot3" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="Slot4" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="Slot5" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="Slot6" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="Slot7" type="TextureRect" parent="Visiual/Slots/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3noci")
+expand_mode = 2
+stretch_mode = 3
+script = ExtResource("4_lyanc")
+
+[node name="VisualInventory2" type="TextureRect" parent="Visiual"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 565.0
+offset_right = 890.0
+offset_bottom = 648.0
+scale = Vector2(1.04, 1)
+texture = ExtResource("4_fvai0")
+expand_mode = 2

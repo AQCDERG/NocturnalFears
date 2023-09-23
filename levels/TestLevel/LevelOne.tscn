@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://crf6noyn4if5w"]
+
+[ext_resource type="PackedScene" uid="uid://bibftsbwc77s4" path="res://prefabs/other/Enviroment/scene.gltf" id="1_rfqik"]
+
+[node name="LevelOne" type="Node3D"]
+
+[node name="scene" parent="." instance=ExtResource("1_rfqik")]
+transform = Transform3D(0.966409, 0, 0.257008, 0, 1, 0, -0.257008, 0, 0.966409, -2.18649, -0.52355, -0.614337)
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Audio"]

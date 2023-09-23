@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfn4lhil8ls77"]
+
+[ext_resource type="Script" path="res://scenes/Characters/JigSaw.cs" id="1_6v1ts"]
+[ext_resource type="Script" path="res://components/3d/TargetingComponent.cs" id="2_fjpee"]
+[ext_resource type="Script" path="res://components/3d/DetectionComponent.cs" id="3_e6j8e"]
+[ext_resource type="Script" path="res://components/ui/SwitchSceneComponenet.cs" id="5_o46hu"]
+[ext_resource type="PackedScene" uid="uid://b3kfl378gssyg" path="res://assets/Models/VillianModels/JigSawModel.tscn" id="6_hcdfa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5g1nw"]
+radius = 2.154
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bjqey"]
+radius = 0.202741
+height = 1.23374
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j3jjr"]
+radius = 0.80934
+
+[node name="JigSaw" type="CharacterBody3D"]
+script = ExtResource("1_6v1ts")
+
+[node name="TargetingComponent" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_fjpee")
+
+[node name="DetectionComponent" type="Area3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_e6j8e")
+
+[node name="DetectArea" type="CollisionShape3D" parent="DetectionComponent"]
+shape = SubResource("SphereShape3D_5g1nw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.466667, 0)
+shape = SubResource("CapsuleShape3D_bjqey")
+
+[node name="AttackArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.666667, 0.333333, 0)
+script = ExtResource("3_e6j8e")
+
+[node name="DetectArea" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.666667, -0.333333, 0)
+shape = SubResource("SphereShape3D_j3jjr")
+
+[node name="SwitchSceneComponent" type="Node3D" parent="."]
+script = ExtResource("5_o46hu")
+scenePath = "res://scenes/BattleScene/BattleScene.tscn"
+
+[node name="JigSaw" parent="." instance=ExtResource("6_hcdfa")]

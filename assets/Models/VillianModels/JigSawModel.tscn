@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3kfl378gssyg"]
+
+[ext_resource type="PackedScene" uid="uid://cxjwh1qab4omx" path="res://prefabs/3d/Enemies/Jigsaw/JigSaw.glb" id="1_7vnif"]
+
+[node name="JigSaw" instance=ExtResource("1_7vnif")]
+transform = Transform3D(2.4, 0, 0, 0, 2.4, 0, 0, 0, 2.4, 0, 0, 0)

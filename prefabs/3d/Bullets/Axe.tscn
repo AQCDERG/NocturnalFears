@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://c71hyrjjvr8yg"]
+
+[ext_resource type="PackedScene" uid="uid://btbihunqjdley" path="res://assets/Models/Weapons/Axe/DoubleAxe.blend" id="1_a8npx"]
+[ext_resource type="Script" path="res://prefabs/3d/Bullets/Axe.cs" id="1_ud780"]
+[ext_resource type="Texture2D" uid="uid://bp4df845sn64k" path="res://assets/Models/Weapons/Dagger/material_0_diffuse.png" id="2_ow43l"]
+[ext_resource type="Script" path="res://components/3d/DetectionComponent.cs" id="3_uormf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m3e4o"]
+height = 9.79298
+radius = 1.37536
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8xl6"]
+albedo_texture = ExtResource("2_ow43l")
+
+[node name="BattleAxe" type="RigidBody3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+gravity_scale = 0.0
+script = ExtResource("1_ud780")
+
+[node name="MovableObject" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="DetectionComponent" type="Area3D" parent="MovableObject"]
+unique_name_in_owner = true
+script = ExtResource("3_uormf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovableObject/DetectionComponent"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.6, -0.00920703, 1)
+shape = SubResource("CylinderShape3D_m3e4o")
+
+[node name="Mesh" type="Node3D" parent="MovableObject"]
+
+[node name="DoubleAxe" parent="MovableObject/Mesh" instance=ExtResource("1_a8npx")]
+
+[node name="Object_3_001" parent="MovableObject/Mesh/DoubleAxe/Object_2" index="0"]
+material_override = SubResource("StandardMaterial3D_j8xl6")
+
+[editable path="MovableObject/Mesh/DoubleAxe"]

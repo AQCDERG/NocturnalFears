@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcgdtif802tnj"]
+
+[ext_resource type="Script" path="res://scenes/Game/Game.cs" id="1_je16s"]
+[ext_resource type="Script" path="res://scenes/Game/GameServiceProvider.cs" id="2_1o6d0"]
+[ext_resource type="Script" path="res://scenes/Game/services/network/NetworkService.cs" id="5_7lix8"]
+[ext_resource type="Script" path="res://scenes/Game/services/level/LevelService.cs" id="5_y6i1m"]
+[ext_resource type="PackedScene" uid="uid://bdwmqqhvv7a73" path="res://levels/TestLevel/TestLevel.tscn" id="6_ytobs"]
+[ext_resource type="Script" path="res://scenes/Game/services/character/CharacterService.cs" id="11_eb1hs"]
+[ext_resource type="Script" path="res://scenes/Game/services/environment/EnvironmentService.cs" id="16_aftnj"]
+[ext_resource type="Script" path="res://tools/FreeCam.cs" id="30_anaka"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vcvgh"]
+sky_top_color = Color(0.196078, 0.45098, 0.760784, 1)
+sky_horizon_color = Color(0.815686, 0.6, 0.470588, 1)
+sky_curve = 0.102453
+ground_bottom_color = Color(0.196078, 0.45098, 0.760784, 1)
+ground_horizon_color = Color(0.815686, 0.6, 0.470588, 1)
+ground_curve = 0.0984917
+
+[sub_resource type="Sky" id="Sky_8l1n6"]
+sky_material = SubResource("ProceduralSkyMaterial_vcvgh")
+
+[sub_resource type="Environment" id="Environment_xjfoo"]
+background_mode = 2
+sky = SubResource("Sky_8l1n6")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 3
+ssr_max_steps = 128
+ssao_radius = 2.0
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 1.93
+sdfgi_cascades = 8
+sdfgi_max_distance = 3276.8
+glow_enabled = true
+glow_blend_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0001
+adjustment_saturation = 1.17
+
+[node name="Client" type="Node"]
+script = ExtResource("1_je16s")
+
+[node name="Services" type="Node" parent="."]
+script = ExtResource("2_1o6d0")
+
+[node name="NetworkService" type="Node" parent="Services"]
+script = ExtResource("5_7lix8")
+
+[node name="CharacterService" type="Node" parent="Services"]
+script = ExtResource("11_eb1hs")
+
+[node name="CharacterSpawner" type="MultiplayerSpawner" parent="Services/CharacterService"]
+
+[node name="LevelService" type="Node" parent="Services" node_paths=PackedStringArray("LevelsHolder")]
+script = ExtResource("5_y6i1m")
+LevelScene = ExtResource("6_ytobs")
+LevelsHolder = NodePath("../../World/Level")
+
+[node name="EnvironmentService" type="Node" parent="Services"]
+script = ExtResource("16_aftnj")
+
+[node name="Environment" type="WorldEnvironment" parent="Services/EnvironmentService"]
+environment = SubResource("Environment_xjfoo")
+
+[node name="Gui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="InstanceObjects" type="Node3D" parent="World"]
+
+[node name="Characters" type="Node3D" parent="World/InstanceObjects"]
+
+[node name="Level" type="Node3D" parent="World"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 0.969445, 0.245307, 0, -0.245307, 0.969445, 0, 0, 0)
+light_volumetric_fog_energy = 5000.0
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_normal_bias = 3.0
+shadow_blur = 0.2
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 0.886
+directional_shadow_max_distance = 768.0
+directional_shadow_pancake_size = 10.0
+
+[node name="Sprite3D" type="Sprite3D" parent="World/DirectionalLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4000)
+pixel_size = 0.3
+billboard = 1
+double_sided = false
+alpha_cut = 1
+alpha_scissor_threshold = 0.77
+texture_filter = 4
+
+[node name="DebugWindow" type="Window" parent="."]
+initial_position = 3
+size = Vector2i(1920, 1080)
+current_screen = 0
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="DebugWindow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.752, 0)
+script = ExtResource("30_anaka")

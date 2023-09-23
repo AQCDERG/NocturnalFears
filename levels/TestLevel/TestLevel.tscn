@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://bdwmqqhvv7a73"]
+
+[ext_resource type="Script" path="res://levels/Level.cs" id="1_2m284"]
+[ext_resource type="Script" path="res://levels/managers/ManagerProvider.cs" id="1_acock"]
+[ext_resource type="Script" path="res://levels/managers/MusicManager.cs" id="3_4c84i"]
+[ext_resource type="PackedScene" uid="uid://chdq5mvvkmym7" path="res://prefabs/3d/character/Character.tscn" id="3_70vo0"]
+[ext_resource type="AudioStream" uid="uid://cr2b47t8fhu2n" path="res://assets/Audio/Music/Ambiance1.mp3" id="5_halii"]
+[ext_resource type="AudioStream" uid="uid://bj6c3qpl8a2s2" path="res://assets/Audio/Music/Ambiance2.mp3" id="6_ryye1"]
+[ext_resource type="AudioStream" uid="uid://bmpbwn6dp4o8" path="res://assets/Audio/Music/Ambiance3.mp3" id="7_2ehho"]
+[ext_resource type="PackedScene" uid="uid://bibftsbwc77s4" path="res://prefabs/other/Enviroment/scene.gltf" id="8_h7n8j"]
+[ext_resource type="PackedScene" uid="uid://bfn4lhil8ls77" path="res://scenes/Characters/JigSaw.tscn" id="9_hmhvd"]
+[ext_resource type="PackedScene" uid="uid://c5atsro6w52y0" path="res://prefabs/3d/Enemies/MrTickleClown/MrTickleClown.tscn" id="11_hnrox"]
+[ext_resource type="PackedScene" uid="uid://cc4l3xs76jot" path="res://prefabs/3d/Items/Key/Key.tscn" id="12_p5k0i"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jjfdi"]
+vertices = PackedVector3Array(-10.7913, 0.242, -27.785, -21.4513, 0.242, -27.785, -21.4513, 0.242, -20.895, -21.4513, 0.242, 20.705, -21.4513, 0.242, 27.725, -10.7913, 0.242, 27.725, 21.4487, 0.242, -20.895, 21.4487, 0.242, -27.785, 10.6587, 0.242, -27.785, 10.6587, 0.242, 27.725, 21.4487, 0.242, 27.725, 21.4487, 0.242, 20.705, -10.7913, 0.242, -27.785, -21.4513, 0.242, -20.895, -21.4513, 0.242, -14.005, 21.4487, 0.242, -14.005, 21.4487, 0.242, -20.895, 10.6587, 0.242, -27.785, -21.4513, 0.242, 13.815, -21.4513, 0.242, 20.705, -10.7913, 0.242, 27.725, 10.6587, 0.242, 27.725, 21.4487, 0.242, 20.705, 21.4487, 0.242, 13.815, -10.7913, 0.242, -27.785, -21.4513, 0.242, -14.005, -21.4513, 0.242, -7.115, 21.4487, 0.242, -7.115, 21.4487, 0.242, -14.005, 10.6587, 0.242, -27.785, -21.4513, 0.242, 6.795, -21.4513, 0.242, 13.815, -10.7913, 0.242, 27.725, 10.6587, 0.242, 27.725, 21.4487, 0.242, 13.815, 21.4487, 0.242, 6.795, -10.7913, 0.242, -27.785, -21.4513, 0.242, -7.115, -21.4513, 0.242, -0.0950012, -0.00125122, 0.242, -27.785, 21.4487, 0.242, -0.0950012, 21.4487, 0.242, -7.115, 10.6587, 0.242, -27.785, -21.4513, 0.242, -0.0950012, -21.4513, 0.242, 6.795, -10.7913, 0.242, 27.725, 10.6587, 0.242, 27.725, 21.4487, 0.242, 6.795, 21.4487, 0.242, -0.0950012, -0.00125122, 0.242, 27.725, 21.4487, 0.242, -0.0950012, 10.6587, 0.242, -27.785, -0.00125122, 0.242, -27.785, -21.4513, 0.242, -0.0950012, -10.7913, 0.242, 27.725, -0.00125122, 0.242, 27.725)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(26, 25, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(30, 32, 31), PackedInt32Array(35, 34, 33), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(42, 41, 40), PackedInt32Array(45, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(53, 50, 55), PackedInt32Array(53, 55, 54)]
+cell_size = 0.13
+cell_height = 0.13
+agent_max_climb = 1.95
+agent_max_slope = 78.39
+
+[sub_resource type="BoxMesh" id="BoxMesh_yiauq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ubhi6"]
+
+[node name="TestLevel" type="Node3D"]
+script = ExtResource("1_2m284")
+metadata/_edit_lock_ = true
+
+[node name="Managers" type="Node" parent="."]
+script = ExtResource("1_acock")
+
+[node name="MusicManager" type="Node" parent="Managers"]
+script = ExtResource("3_4c84i")
+
+[node name="Workspace" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="Workspace" instance=ExtResource("3_70vo0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.49764, -5.59469)
+
+[node name="Enviroment" type="Node3D" parent="Workspace"]
+
+[node name="Halloween" parent="Workspace/Enviroment" instance=ExtResource("8_h7n8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121145, 0, 5.42176)
+
+[node name="JigSaw" parent="Workspace" instance=ExtResource("9_hmhvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52745, -19.1401)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Workspace"]
+navigation_mesh = SubResource("NavigationMesh_jjfdi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Workspace/NavigationRegion3D"]
+transform = Transform3D(43.9425, 0, 0, 0, 0.036, 0, 0, 0, 56.61, 0, 0, 0)
+mesh = SubResource("BoxMesh_yiauq")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Workspace/NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Workspace/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_ubhi6")
+
+[node name="AmbiantMusic" type="Node3D" parent="."]
+
+[node name="Ambiant1" type="AudioStreamPlayer" parent="AmbiantMusic"]
+unique_name_in_owner = true
+stream = ExtResource("5_halii")
+volume_db = -35.0
+
+[node name="Ambiant2" type="AudioStreamPlayer" parent="AmbiantMusic"]
+unique_name_in_owner = true
+stream = ExtResource("6_ryye1")
+volume_db = -35.0
+
+[node name="Ambiant3" type="AudioStreamPlayer" parent="AmbiantMusic"]
+unique_name_in_owner = true
+stream = ExtResource("7_2ehho")
+volume_db = -35.0
+
+[node name="MrTickleClown" parent="." instance=ExtResource("11_hnrox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, -16)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Key" parent="." instance=ExtResource("12_p5k0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Key2" parent="." instance=ExtResource("12_p5k0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.10583)

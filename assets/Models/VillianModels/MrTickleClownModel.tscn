@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://um8fbkiax4dj"]
+
+[ext_resource type="PackedScene" uid="uid://cnbdlnceggywp" path="res://assets/Models/VillianModels/MrTickleClown.glb" id="1_0fbyx"]
+
+[node name="MrTickleClownModel" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4)
+
+[node name="MrTickleClown" parent="." instance=ExtResource("1_0fbyx")]
+
+[editable path="MrTickleClown"]

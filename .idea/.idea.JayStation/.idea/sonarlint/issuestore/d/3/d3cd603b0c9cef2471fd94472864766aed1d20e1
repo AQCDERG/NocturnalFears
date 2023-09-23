@@ -1,0 +1,8 @@
+
+:csharpsquid:S3168*"Return 'Task' instead.(À§×ö8óŞÁå§1
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ãûñ8ÕŸîŞ§1
+mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(›ûèüÿÿÿÿ8ò´¸ã§1
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¤µ‰8±¼ùè§1
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(§€öİ8çĞĞƒ¨1
+Xcsharpsquid:S112""5'System.Exception' should not be thrown by user code.(ŞÄ¹ú8Äé§1
+ccsharpsquid:S1075"?Refactor your code not to use hardcoded absolute paths or URIs.(§€öİ8ÃÈÍƒ¨1

@@ -1,0 +1,212 @@
+[gd_scene load_steps=17 format=3 uid="uid://c3sjbsj0ckvq1"]
+
+[ext_resource type="PackedScene" uid="uid://bibftsbwc77s4" path="res://prefabs/other/Enviroment/scene.gltf" id="1_df2jk"]
+[ext_resource type="AudioStream" uid="uid://dicmfdid0mce7" path="res://assets/Audio/Sounds/LetsGetIt3.0.mp3" id="2_fuub7"]
+[ext_resource type="AudioStream" uid="uid://ccplmsuvdunip" path="res://assets/Audio/Music/MainMenuMusic.mp3" id="2_nhli5"]
+[ext_resource type="Script" path="res://scenes/MainMenu/MainMenuCamera.cs" id="2_x0hty"]
+[ext_resource type="Script" path="res://components/3d/RandomMovementComponenet.cs" id="3_aw1tb"]
+[ext_resource type="FontFile" uid="uid://dbuthrq7x5u41" path="res://assets/Fonts/HallowenInline.otf" id="4_pswev"]
+[ext_resource type="Texture2D" uid="uid://t6j8oh0ramjo" path="res://assets/Images/Red.webp" id="6_2081f"]
+[ext_resource type="Texture2D" uid="uid://deqsv7blvosdo" path="res://assets/Images/PurpleButton.webp" id="7_xpdx7"]
+[ext_resource type="Texture2D" uid="uid://c2jctx4f1xnuv" path="res://assets/Images/pinkButton.webp" id="8_yd3wk"]
+[ext_resource type="Script" path="res://scenes/MainMenu/ChangeSceneButton.cs" id="9_dp6da"]
+[ext_resource type="Texture2D" uid="uid://176xp5d2sq70" path="res://assets/Images/levelSelector2.jpg" id="12_uf5l1"]
+
+[sub_resource type="Theme" id="Theme_jsgn0"]
+default_font = ExtResource("4_pswev")
+
+[sub_resource type="Theme" id="Theme_2pyew"]
+default_font = ExtResource("4_pswev")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gtaob"]
+texture = ExtResource("7_xpdx7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8dccy"]
+texture = ExtResource("6_2081f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f8ee"]
+texture = ExtResource("8_yd3wk")
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("2_nhli5")
+volume_db = -20.0
+autoplay = true
+
+[node name="LetsGetIt" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("2_fuub7")
+
+[node name="Camera" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+current = true
+script = ExtResource("2_x0hty")
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="scene" parent="Enviroment" instance=ExtResource("1_df2jk")]
+transform = Transform3D(0.966409, 0, 0.257008, 0, 1, 0, -0.257008, 0, 0.966409, -2.18649, -0.52355, -0.614337)
+
+[node name="RandomMovementComponenet" type="Node3D" parent="Enviroment/scene" node_paths=PackedStringArray("changeDirectionTimer", "moveableObject")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18649, 0.52355, 0.614337)
+script = ExtResource("3_aw1tb")
+Max = 0.02
+Min = -0.02
+changeDirectionTimer = NodePath("../ChangeDirectionTimer")
+moveableObject = NodePath("..")
+
+[node name="ChangeDirectionTimer" type="Timer" parent="Enviroment/scene"]
+wait_time = 2.0
+autostart = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ui/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_jsgn0")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=0][rainbow freq=0.1 sat=0.5 val=1.8.0]JayStation Adventures![/rainbow][/wave]"
+fit_content = true
+scroll_following = true
+autowrap_mode = 0
+context_menu_enabled = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Ui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -292.0
+offset_right = 159.0
+offset_bottom = 179.715
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CharacterSelect" type="Button" parent="Ui"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = 18.0
+offset_right = 216.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_2pyew")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_gtaob")
+text = "          Select Character
+"
+alignment = 0
+script = ExtResource("9_dp6da")
+scenePath = "res://scenes/MainMenu/CharacterSelector.tscn"
+oldScenePath = "MainMenu"
+
+[node name="Play" type="Button" parent="Ui"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.5
+offset_top = -80.0
+offset_right = 215.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_2pyew")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_8dccy")
+text = "Play"
+script = ExtResource("9_dp6da")
+scenePath = "res://levels/TestLevel/TestLevel.tscn"
+oldScenePath = "MainMenu"
+
+[node name="Attribution" type="Button" parent="Ui"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = 114.0
+offset_right = 216.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_2pyew")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_0f8ee")
+text = "Quit
+"
+
+[node name="ChooseLevel" type="TextureRect" parent="Ui"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -290.5
+offset_right = 536.0
+offset_bottom = 290.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_uf5l1")
+expand_mode = 2

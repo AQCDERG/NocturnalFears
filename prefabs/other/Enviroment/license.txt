@@ -1,0 +1,11 @@
+Model Information:
+* title:	FREE - SkyBox Fairy Forest Night
+* source:	https://sketchfab.com/3d-models/free-skybox-fairy-forest-night-c87cd5c223144c3588af2b8f1380cf1b
+* author:	Paul (https://sketchfab.com/paul_paul_paul)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "FREE - SkyBox Fairy Forest Night" (https://sketchfab.com/3d-models/free-skybox-fairy-forest-night-c87cd5c223144c3588af2b8f1380cf1b) by Paul (https://sketchfab.com/paul_paul_paul) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

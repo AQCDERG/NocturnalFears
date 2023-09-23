@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://btf6di5vfehvn"]
+
+[ext_resource type="Shader" path="res://scenes/BattleScene/BattleScene.gdshader" id="1_8ggq1"]
+
+[sub_resource type="Gradient" id="Gradient_kutcj"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mjls3"]
+gradient = SubResource("Gradient_kutcj")
+
+[resource]
+shader = ExtResource("1_8ggq1")
+shader_parameter/dimensions = Vector2(1152, 648)
+shader_parameter/rows = 50.0
+shader_parameter/columns = 5.0
+shader_parameter/vertical_scroll = 0.73
+shader_parameter/horizontal_scroll = 0.5
+shader_parameter/size_min = 0.3
+shader_parameter/size_max = 0.7
+shader_parameter/wave_min = 0.1
+shader_parameter/wave_max = 1.0
+shader_parameter/wave_speed = 0.5
+shader_parameter/wave_rotation = 1.0
+shader_parameter/far_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/near_color = Color(1, 1, 1, 1)
+shader_parameter/particle_texture = SubResource("GradientTexture1D_mjls3")

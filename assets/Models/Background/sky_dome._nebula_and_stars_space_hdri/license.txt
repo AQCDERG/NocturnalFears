@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sky dome. Nebula and stars space HDRi.
+* source:	https://sketchfab.com/3d-models/sky-dome-nebula-and-stars-space-hdri-4bc7403a02154cf8af658cc752aa4c92
+* author:	Aliaksandr.melas (https://sketchfab.com/alexandr.melas)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sky dome. Nebula and stars space HDRi." (https://sketchfab.com/3d-models/sky-dome-nebula-and-stars-space-hdri-4bc7403a02154cf8af658cc752aa4c92) by Aliaksandr.melas (https://sketchfab.com/alexandr.melas) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

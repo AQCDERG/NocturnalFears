@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://51hi3ayr1hlb"]
+
+[ext_resource type="Script" path="res://scripts/globals/autoloads/GameState.cs" id="1_67cg4"]
+[ext_resource type="Script" path="res://components/other/Currency.cs" id="2_a4mwu"]
+
+[node name="GameState" type="Node"]
+script = ExtResource("1_67cg4")
+
+[node name="Currency" type="Node" parent="."]
+script = ExtResource("2_a4mwu")

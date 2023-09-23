@@ -1,0 +1,11 @@
+Model Information:
+* title:	FREE - SkyBox Enchanted Forest
+* source:	https://sketchfab.com/3d-models/free-skybox-enchanted-forest-8c99faed86fd47a6ac4eb24176d3e774
+* author:	Paul (https://sketchfab.com/paul_paul_paul)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "FREE - SkyBox Enchanted Forest" (https://sketchfab.com/3d-models/free-skybox-enchanted-forest-8c99faed86fd47a6ac4eb24176d3e774) by Paul (https://sketchfab.com/paul_paul_paul) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

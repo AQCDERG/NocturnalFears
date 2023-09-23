@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5atsro6w52y0"]
+
+[ext_resource type="Script" path="res://prefabs/3d/Enemies/MrTickleClown/MrTickleClown.cs" id="1_cjn8v"]
+[ext_resource type="Script" path="res://components/3d/TargetingComponent.cs" id="2_hnbk2"]
+[ext_resource type="Script" path="res://components/3d/DetectionComponent.cs" id="3_mvmca"]
+[ext_resource type="Script" path="res://components/ui/SwitchSceneComponenet.cs" id="4_0o7tw"]
+[ext_resource type="PackedScene" uid="uid://um8fbkiax4dj" path="res://assets/Models/VillianModels/MrTickleClownModel.tscn" id="5_dn5po"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5g1nw"]
+radius = 2.154
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bjqey"]
+radius = 0.202741
+height = 1.23374
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j3jjr"]
+radius = 0.80934
+
+[node name="MrTickleClown" type="CharacterBody3D"]
+script = ExtResource("1_cjn8v")
+
+[node name="TargetingComponent" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_hnbk2")
+
+[node name="DetectionComponent" type="Area3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_mvmca")
+
+[node name="DetectArea" type="CollisionShape3D" parent="DetectionComponent"]
+shape = SubResource("SphereShape3D_5g1nw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.466667, 0)
+shape = SubResource("CapsuleShape3D_bjqey")
+
+[node name="AttackArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.666667, 0.333333, 0)
+script = ExtResource("3_mvmca")
+
+[node name="DetectArea" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.666667, -0.333333, 0)
+shape = SubResource("SphereShape3D_j3jjr")
+
+[node name="SwitchSceneComponent" type="Node3D" parent="."]
+script = ExtResource("4_0o7tw")
+scenePath = "res://scenes/BattleScene/BattleScene.tscn"
+
+[node name="MrTickleClownModel" parent="." instance=ExtResource("5_dn5po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 1.33333)

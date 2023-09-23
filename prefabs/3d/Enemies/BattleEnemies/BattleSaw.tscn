@@ -1,0 +1,170 @@
+[gd_scene load_steps=25 format=3 uid="uid://24uvbi63n61h"]
+
+[ext_resource type="PackedScene" uid="uid://b3kfl378gssyg" path="res://assets/Models/VillianModels/JigSawModel.tscn" id="1_lxs0a"]
+[ext_resource type="Script" path="res://prefabs/3d/Enemies/BattleEnemies/BattleSaw.cs" id="1_s3uay"]
+[ext_resource type="AudioStream" uid="uid://bh3x48oj35avg" path="res://assets/Audio/Music/SawMusic.mp3" id="3_6ytd7"]
+[ext_resource type="Script" path="res://scripts/Attacks/MeleeAttack.cs" id="4_2oqau"]
+[ext_resource type="Script" path="res://scripts/Attacks/AttackAction.cs" id="5_a6mck"]
+[ext_resource type="Script" path="res://components/3d/DetectionComponent.cs" id="5_lpqfe"]
+[ext_resource type="Script" path="res://components/3d/TargetingComponent.cs" id="6_c2d8k"]
+[ext_resource type="Script" path="res://scripts/Attacks/AttackManager.cs" id="6_fta0r"]
+[ext_resource type="Script" path="res://scripts/Attacks/SpinRangeAttack.cs" id="9_j6foa"]
+[ext_resource type="PackedScene" uid="uid://ba70vx2fi6mla" path="res://prefabs/3d/Bullets/JigSawBullet.tscn" id="10_7vxea"]
+[ext_resource type="Script" path="res://scripts/Attacks/OneshotAttack.cs" id="10_jdiox"]
+[ext_resource type="Script" path="res://scripts/Attacks/RapidFire.cs" id="12_jcayh"]
+[ext_resource type="PackedScene" uid="uid://dvet70e4c588b" path="res://prefabs/3d/Bullets/DaggerBullet.tscn" id="12_ut018"]
+[ext_resource type="Texture2D" uid="uid://baogodg4gxta3" path="res://assets/Images/brightGlowParticle.png" id="13_2nntq"]
+[ext_resource type="PackedScene" uid="uid://c71hyrjjvr8yg" path="res://prefabs/3d/Bullets/Axe.tscn" id="14_hbreq"]
+[ext_resource type="AudioStream" uid="uid://em11wwmtcue7" path="res://assets/Audio/Sounds/Slice.mp3" id="16_cav7h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ard6"]
+radius = 11.8657
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8qxne"]
+radius = 4.54057
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lq0ey"]
+radius = 0.554756
+height = 2.73193
+
+[sub_resource type="Gradient" id="Gradient_02c5v"]
+offsets = PackedFloat32Array(0.101449, 0.304348, 0.65942, 0.848485, 1)
+colors = PackedColorArray(0.944375, 0.546891, 0, 0.101961, 0.992157, 0.470588, 0, 0.894118, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_87ocy"]
+gradient = SubResource("Gradient_02c5v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdhkm"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.5
+color_ramp = SubResource("GradientTexture1D_87ocy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ab0ha"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("13_2nntq")
+albedo_texture_msdf = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_mc4bg"]
+material = SubResource("StandardMaterial3D_ab0ha")
+size = Vector2(0.2, 0.2)
+
+[node name="BattleSaw" type="CharacterBody3D"]
+script = ExtResource("1_s3uay")
+diffcultyLevel = 3
+
+[node name="JigSaw" parent="." instance=ExtResource("1_lxs0a")]
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ytd7")
+volume_db = -15.0
+
+[node name="Component" type="Node3D" parent="."]
+
+[node name="DetectionComponent" type="Area3D" parent="Component"]
+unique_name_in_owner = true
+script = ExtResource("5_lpqfe")
+
+[node name="DetectArea" type="CollisionShape3D" parent="Component/DetectionComponent"]
+shape = SubResource("SphereShape3D_0ard6")
+
+[node name="TargetingComponent" type="NavigationAgent3D" parent="Component"]
+unique_name_in_owner = true
+script = ExtResource("6_c2d8k")
+
+[node name="AttackArea" type="Area3D" parent="Component"]
+unique_name_in_owner = true
+script = ExtResource("5_lpqfe")
+
+[node name="DetectArea" type="CollisionShape3D" parent="Component/AttackArea"]
+shape = SubResource("SphereShape3D_8qxne")
+
+[node name="RangeAttackArea" type="Area3D" parent="Component"]
+unique_name_in_owner = true
+script = ExtResource("5_lpqfe")
+
+[node name="DetectArea" type="CollisionShape3D" parent="Component/RangeAttackArea"]
+shape = SubResource("SphereShape3D_0ard6")
+
+[node name="Movements" type="Node3D" parent="."]
+
+[node name="Teleport" type="Node3D" parent="Movements"]
+
+[node name="MoveToOpponenet" type="Node3D" parent="Movements"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11868, 0)
+shape = SubResource("CapsuleShape3D_lq0ey")
+
+[node name="AttackActionManager" type="Node3D" parent="."]
+script = ExtResource("6_fta0r")
+
+[node name="SpinAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="MeleeAttack" type="Node3D" parent="AttackActionManager"]
+unique_name_in_owner = true
+script = ExtResource("4_2oqau")
+
+[node name="FromGroundAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="SkyAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="BlindAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="PlatformAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="FillGroundAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="MinnionAttack" type="Node3D" parent="AttackActionManager"]
+
+[node name="AttackAction" type="Node3D" parent="AttackActionManager"]
+script = ExtResource("5_a6mck")
+
+[node name="SpinRangeAttack" type="Node3D" parent="AttackActionManager"]
+script = ExtResource("9_j6foa")
+
+[node name="OneshotAttack" type="Node3D" parent="AttackActionManager"]
+unique_name_in_owner = true
+script = ExtResource("10_jdiox")
+bullet = ExtResource("10_7vxea")
+bulletAmount = 2
+pitchSound = 1.0
+
+[node name="RapidFire" type="Node3D" parent="AttackActionManager"]
+unique_name_in_owner = true
+script = ExtResource("12_jcayh")
+bullet = ExtResource("12_ut018")
+pitchSound = 1.2
+
+[node name="SpinFire" type="Node3D" parent="AttackActionManager"]
+unique_name_in_owner = true
+script = ExtResource("10_jdiox")
+bullet = ExtResource("14_hbreq")
+bulletAmount = 1
+pitchSound = 0.6
+
+[node name="TargetHit" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0, 1, 0, 0.553034, 0)
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_cdhkm")
+draw_pass_1 = SubResource("QuadMesh_mc4bg")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_cav7h")
+volume_db = -20.0
+autoplay = true

@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://chdq5mvvkmym7"]
+
+[ext_resource type="Script" path="res://prefabs/3d/character/Character.cs" id="1_4pgye"]
+[ext_resource type="Script" path="res://prefabs/3d/character/MovementComponent.cs" id="2_oh41a"]
+[ext_resource type="Script" path="res://components/other/Health/HealthComponent.cs" id="3_hqesf"]
+[ext_resource type="FontFile" uid="uid://dbuthrq7x5u41" path="res://assets/Fonts/HallowenInline.otf" id="4_eaaqa"]
+[ext_resource type="PackedScene" uid="uid://dup3shotyss4f" path="res://prefabs/3d/Items/Inventory.tscn" id="5_dfp1o"]
+[ext_resource type="Script" path="res://components/ui/HealthComponent.cs" id="5_hkupi"]
+[ext_resource type="Script" path="res://components/3d/DetectionComponent.cs" id="6_8jnpf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ydr5l"]
+
+[sub_resource type="Theme" id="Theme_753qi"]
+default_font = ExtResource("4_eaaqa")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d0a5b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_udrh2"]
+radius = 2.154
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4pgye")
+
+[node name="Components" type="Node3D" parent="."]
+
+[node name="MovementComponent" type="Node3D" parent="Components"]
+unique_name_in_owner = true
+script = ExtResource("2_oh41a")
+
+[node name="HealthComponent" type="Node" parent="Components/MovementComponent"]
+script = ExtResource("3_hqesf")
+
+[node name="VisualParts" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualParts"]
+mesh = SubResource("CapsuleMesh_ydr5l")
+skeleton = NodePath("../..")
+
+[node name="Head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="playerCamera" type="Camera3D" parent="Head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.96046e-08, -0.5)
+current = true
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CurrencyLabel" type="Label" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HealthLabel" type="Label" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 61.0
+offset_right = 101.0
+offset_bottom = 23.0
+text = "FFF"
+
+[node name="ItemLabel" type="RichTextLabel" parent="GUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 510.0
+offset_top = 428.0
+offset_right = 668.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = SubResource("Theme_753qi")
+theme_override_font_sizes/normal_font_size = 29
+bbcode_enabled = true
+text = "Pick up"
+fit_content = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_d0a5b")
+
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_hkupi")
+
+[node name="Inventory" parent="." instance=ExtResource("5_dfp1o")]
+unique_name_in_owner = true
+
+[node name="DetectionComponent" type="Area3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_8jnpf")
+
+[node name="DetectArea" type="CollisionShape3D" parent="DetectionComponent"]
+shape = SubResource("SphereShape3D_udrh2")

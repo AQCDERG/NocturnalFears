@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxb67i35wjeji"]
+
+[ext_resource type="Script" path="res://prefabs/3d/Enemies/BattleEnemies/BattleClown.cs" id="1_5g7ug"]
+[ext_resource type="PackedScene" uid="uid://um8fbkiax4dj" path="res://assets/Models/VillianModels/MrTickleClownModel.tscn" id="2_ebd1r"]
+[ext_resource type="AudioStream" uid="uid://dhmcud4ug8eq2" path="res://assets/Audio/Music/clown.mp3" id="2_q3nhp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1t78l"]
+radius = 0.271961
+height = 1.13684
+
+[node name="BattleClown" type="CharacterBody3D"]
+script = ExtResource("1_5g7ug")
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q3nhp")
+volume_db = -15.0
+
+[node name="MrTickleClownModel" parent="." instance=ExtResource("2_ebd1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.40176)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46063, 0)
+shape = SubResource("CapsuleShape3D_1t78l")

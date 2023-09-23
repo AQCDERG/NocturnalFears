@@ -1,0 +1,251 @@
+[gd_scene load_steps=27 format=3 uid="uid://djk0lalirj52d"]
+
+[ext_resource type="Script" path="res://scenes/BattleScene/BattleSceneManager.cs" id="1_yj3kh"]
+[ext_resource type="Material" uid="uid://btf6di5vfehvn" path="res://assets/Shaders/Evil.tres" id="2_1hh8d"]
+[ext_resource type="PackedScene" uid="uid://24uvbi63n61h" path="res://prefabs/3d/Enemies/BattleEnemies/BattleSaw.tscn" id="2_db635"]
+[ext_resource type="Texture2D" uid="uid://ckeg7hvcswaab" path="res://assets/Images/BattleBackground.png" id="3_eyh8c"]
+[ext_resource type="PackedScene" uid="uid://3kxf4s3mahpt" path="res://prefabs/3d/Locations/WareHouse.tscn" id="3_kbb17"]
+[ext_resource type="FontFile" uid="uid://dbuthrq7x5u41" path="res://assets/Fonts/HallowenInline.otf" id="4_3dtye"]
+[ext_resource type="PackedScene" uid="uid://dxb67i35wjeji" path="res://prefabs/3d/Enemies/BattleEnemies/BattleClown.tscn" id="4_vgvc1"]
+[ext_resource type="AudioStream" uid="uid://bau27uqt1bkd0" path="res://assets/Audio/Sounds/SwordClash.mp3" id="5_8rtxy"]
+[ext_resource type="Texture2D" uid="uid://baogodg4gxta3" path="res://assets/Images/brightGlowParticle.png" id="8_1d7o2"]
+
+[sub_resource type="Theme" id="Theme_iltoi"]
+default_font = ExtResource("4_3dtye")
+
+[sub_resource type="Gradient" id="Gradient_67gir"]
+offsets = PackedFloat32Array(0, 0.162879, 0.848485, 1)
+colors = PackedColorArray(0, 0, 0, 0.102273, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fa1ey"]
+gradient = SubResource("Gradient_67gir")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2aflg"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 140.0
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+color_ramp = SubResource("GradientTexture1D_fa1ey")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_150j7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_1d7o2")
+albedo_texture_msdf = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_pfdd3"]
+material = SubResource("StandardMaterial3D_150j7")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Gradient" id="Gradient_hei48"]
+offsets = PackedFloat32Array(0, 0.666667, 0.990291)
+colors = PackedColorArray(1, 0, 0, 1, 0.913725, 0.427451, 0, 1, 0.752941, 0.501961, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ocmrk"]
+gradient = SubResource("Gradient_hei48")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_40xsq"]
+direction = Vector3(0, 1, 0)
+spread = 15.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 1.0
+color_ramp = SubResource("GradientTexture1D_ocmrk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kglnl"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("8_1d7o2")
+albedo_texture_force_srgb = true
+billboard_mode = 2
+grow = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_d0lt4"]
+material = SubResource("StandardMaterial3D_kglnl")
+size = 0.304
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_clifs"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_1d7o2")
+heightmap_enabled = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_lapt1"]
+material = SubResource("StandardMaterial3D_clifs")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_onqmb"]
+sky_top_color = Color(0.968627, 0, 0.317647, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0.352941, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_5x7fi"]
+sky_material = SubResource("ProceduralSkyMaterial_onqmb")
+
+[sub_resource type="Environment" id="Environment_okda1"]
+background_mode = 2
+sky = SubResource("Sky_5x7fi")
+ambient_light_source = 1
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.6, 0.509804, 0.65098, 1)
+fog_density = 0.313
+fog_height = -989.15
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0687
+volumetric_fog_albedo = Color(0.431373, 0, 0, 1)
+volumetric_fog_emission_energy = 0.5
+volumetric_fog_gi_inject = 3.0
+volumetric_fog_length = 32.2
+
+[sub_resource type="FogMaterial" id="FogMaterial_keipc"]
+density = 0.416
+albedo = Color(0.556863, 0.298039, 0, 1)
+height_falloff = 0.000393966
+
+[node name="BattleScene" type="Node3D"]
+
+[node name="BattleSceneManager" type="Node3D" parent="."]
+script = ExtResource("1_yj3kh")
+battleSawScene = ExtResource("2_db635")
+wareHouseScene = ExtResource("3_kbb17")
+battleClownScene = ExtResource("4_vgvc1")
+
+[node name="StartEffects" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="StartEffects"]
+material = ExtResource("2_1hh8d")
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+texture = ExtResource("3_eyh8c")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="StartEffects"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 255
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StartEffects/MarginContainer"]
+material = ExtResource("2_1hh8d")
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_iltoi")
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=5.0 connected=0][shake]Vs![/shake][/wave]"
+fit_content = true
+autowrap_mode = 0
+context_menu_enabled = true
+
+[node name="Background" type="GPUParticles3D" parent="StartEffects"]
+transform = Transform3D(1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0, 1, 0, 0.553034, -1)
+amount = 250
+lifetime = 1.5
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_2aflg")
+draw_pass_1 = SubResource("QuadMesh_pfdd3")
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="SwordClash" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_8rtxy")
+volume_db = -20.0
+autoplay = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_volumetric_fog_energy = 10.0
+
+[node name="ParticleEffect" type="Node3D" parent="."]
+
+[node name="Background5" type="GPUParticles3D" parent="ParticleEffect"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.50718, 0, -1)
+emitting = false
+amount = 300
+lifetime = 2.0
+speed_scale = 3.0
+trail_enabled = true
+trail_lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_40xsq")
+draw_pass_1 = SubResource("RibbonTrailMesh_d0lt4")
+
+[node name="Background3" type="GPUParticles3D" parent="ParticleEffect"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.93283, 0, -1)
+emitting = false
+amount = 300
+lifetime = 2.0
+speed_scale = 3.0
+trail_enabled = true
+trail_lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_40xsq")
+draw_pass_1 = SubResource("QuadMesh_pfdd3")
+
+[node name="Background2" type="GPUParticles3D" parent="ParticleEffect"]
+transform = Transform3D(0.00326513, -0.999995, -0.000328419, 0.999995, 0.00326524, -0.000334143, 0.000335211, -0.00032733, 1, 3, 0, 0)
+emitting = false
+amount = 40
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_40xsq")
+draw_pass_1 = SubResource("RibbonTrailMesh_lapt1")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="ParticleEffect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0.6)
+light_color = Color(0.8, 0.101961, 0, 1)
+light_energy = 2.5
+light_volumetric_fog_energy = 2.0
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_okda1")
+
+[node name="FogVolume" type="FogVolume" parent="World/WorldEnvironment"]
+transform = Transform3D(12.88, 0, 0, 0, 0.292995, 0, 0, 0, 23.14, 0, -0.0149117, 0)
+size = Vector3(1.97707, 2, 2)
+material = SubResource("FogMaterial_keipc")
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56651, 1.1963)
+current = true
